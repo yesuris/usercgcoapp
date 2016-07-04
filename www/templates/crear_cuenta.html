@@ -1,0 +1,43 @@
+<ion-view view-title="CREAR CUENTA">
+    <ion-header-bar class="colorr">
+        <h1 class="title white-text">Registro</h1>
+    </ion-header-bar>
+    <ion-content class="center-align">
+        <div class="container">
+            
+            <div class="center-align">
+                <img class="responsive-img" src="img/logo_arriba.png">
+            </div>
+            <form role="form" name="forRegistro" ng-model="formulario" >
+                <!--Mensajes -->
+                
+            <input ng-class="{ 'has-error': forRegistro.nombreUsuario.$invalid, 'has-success': forRegistro.nombreUsuario.$valid}" ng-model="registroCliente.nombre" placeholder="* Nombres" id="nombres" name="nombreUsuario" type="text" ng-minlength="3" required>
+            <div ng-show="forRegistro.nombreUsuario.$dirty">
+                <div ng-show="forRegistro.nombreUsuario.$error.minlength" class="alert alert-danger" role="alert">*Asegurate de escribir un nombre valido.</div>
+            </div>
+            <input ng-class="{ 'has-error': forRegistro.emailUsuario.$invalid, 'has-success': forRegistro.emailUsuario.$valid}" ng-model="registroCliente.correo" placeholder="* Correo Electronico" id="email" name="emailUsuario" type="email" class="validate">
+            <div ng-show="forRegistro.nombreUsuario.$dirty">
+                <div ng-show="forRegistro.emailUsuario.$error.email" class="alert alert-danger" role="alert">*Asegurate de escribir un email valido.</div>
+            </div>
+            <input ng-class="{ 'has-error': forRegistro.movil.$invalid, 'has-success': forRegistro.movil.$valid}" ng-model="registroCliente.telefono" placeholder="* Movil" id="movil" name="movil" type="number" ng-maxlength="10" ng-minlength="10" required>
+            <div ng-show="forRegistro.movil.$dirty">
+                <div ng-show="forRegistro.movil.$error.maxlength || forRegistro.movil.$error.minlength" class="alert alert-danger" role="alert">*el numero celular debe tener 10 caracteres para ser valido.</div>
+            </div>
+            <input ng-class="{ 'has-error': forRegistro.contrasena.$invalid, 'has-success': forRegistro.contrasena.$valid}" ng-model="registroCliente.contrasena" placeholder="* Contraseña" id="password" name="contrasena" type="password" ng-minlength="6" required>
+            <div ng-show="forRegistro.contrasena.$dirty">
+                <div ng-show="forRegistro.contrasena.$error.minlength" class="alert alert-danger" role="alert">*La contraseña debe terner minimo 6 caracteres.</div>
+            </div>
+            <input ng-class="{invalid: (forRegistro.contrasena.$dirty && forRegistro.contrasena2.$error.pattern)}" ng-model="registroCliente.password" placeholder="* Confirmar Contraseña" name="contrasena2" type="password" ng-pattern="registroCliente.contrasena" required>
+            <div ng-show="forRegistro.contrasena2.$dirty">
+                <div ng-show="forRegistro.contrasena2.$error.pattern" class="alert alert-danger" role="alert">*Las contraseñas no coinciden.</div>
+            </div>
+            
+            <div>
+                <button ng-disabled="forRegistro.$invalid;" ng-click="registrarCliente()" class="button-block waves-effect waves-light btn blue-grey darken-2 white-text">CREAR CUENTA</button>
+                <br>
+                <a menu-toggle="left" href="#/app/restaurante">Ya tengo una cuenta. Ingresar</a>
+            </div>
+                </form>
+        </div>
+    </ion-content>
+</ion-view>

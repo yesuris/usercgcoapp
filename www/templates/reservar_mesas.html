@@ -1,0 +1,85 @@
+<ion-header-bar class="blue-grey darken-2">
+    <h1 class="title white-text">Reservas</h1>
+</ion-header-bar>
+<ion-tabs class="tabs-icon-top tabs-top blue-grey darken-2">
+    <ion-tab title="Reseva Abierta" icon-on="ion-ios-barcode" icon-off="ion-ios-barcode-outline">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <form role="form" name="formu" ng-model="formulario" ng-controller="ReservasCtrl as RC">
+                <br>
+                <!--Mensajes -->
+                <div ng-show="formu.npersonas.$dirty">
+                    <div ng-show="formu.npersonas.$error.required" class="alert alert-danger" role="alert">*Campo Numero de personas obligatorio.</div>
+                    <div ng-show="formu.npersonas.$error.min || formu.npersonas.$error.max" role="alert">*El numero de personas debe estar entre 1 y 100. </div>
+                </div>
+                <div ng-show="formu.fecha.$dirty">
+                    <div ng-show="formu.fecha.$error.date" class="alert alert-danger" role="alert">*Fecha invalida</div>
+                    <div ng-show="formu.fecha.$error.min" role="alert">*Debes seleccionar la fecha de hoy o una posterior.</div>
+                    <div ng-show="formu.fecha.$error.max" role="alert">*Elegige una fecha mas cercana.</div>
+                </div>
+                <div>{{Menssagedecampo}}</div>
+                <!--Campos -->
+                <div ng-class="{ 'has-error': formu.npersonas.$invalid, 'has-success': formu.npersonas.$valid}" class="input-field">
+                    <a class="fastrisko">*</a><i class="icon ion-ios-people-outline prefix"></i>
+                    <input type="number" name="npersonas" ng-model="reserva.numero_personas" min="1" max="100" id="icon_prefix" placeholder="Numero de personas" autofocus required>
+                </div>
+                <div ng-class="{ 'has-error': formu.fecha.$invalid, 'has-success': formu.fecha.$valid}" class="input-field">
+                    <a class="fastrisko">*</a><i class="icon ion-ios-calendar-outline prefix"></i>
+                    <input type="date" name="fecha" ng-model="reserva.fecha" min="{{currentDate}}" max="2016-12-31">
+                </div>
+                <div class="input-field">
+                    <a class="fastrisko">*</a><i class="icon ion-ios-clock-outline prefix"></i>
+                    <ionic-timepicker input-obj="timePickerObject12Hour">
+                        <standard-time-meridian class="posicion" etime='timePickerObject12Hour.inputEpochTime'></standard-time-meridian>
+                    </ionic-timepicker >
+                </div>
+                <div class="input-field">
+                    <i class="icon ion-ios-eye-outline prefix"></i>
+                    <textarea ng-model="reserva.observacion" id="textarea1" class="colborinput" placeholder="Observacion"></textarea>
+                </div>
+                <br>
+                <div class="container center-align colortextbtn">
+                    <a ng-click="modal.show();  listarMenu()">Añadir plato</a>
+                </div>
+                <br>
+                <ion-list ng-repeat="plato in platos">
+                    <ion-item>
+                        {{$scope.i}}
+                    </ion-item>
+                </ion-list>
+                <button name= "btnReservar" ng-click="reservar();" ng-disabled="formu.$invalid;checkQuestions();" class=" caracteristicasboton btn btn-success btn-block waves-effect waves-light waves-block btn blue-grey darken-2">RESERVAR</button>
+            </form>
+        </div>
+        <br>
+        <!--<button ng-click="mostrarPlatos();">Hola</button>-->
+    </ion-tab>
+    <!-- Tab 3 content -------------------------------------------------------------------------------------------------------------------->
+    <!--<ion-tab title="Reseva Eventos" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline"><br><br><br><br>
+<div class="container">
+<div class="input-field">
+<i class="icon ion-ios-people-outline prefix"></i>
+<input  id="icon_prefix2" type="text" class="validate" placeholder="Numero de personas">
+</div>
+<div class="input-field">
+<i class="icon ion-ios-calendar-outline prefix"></i>
+<input  type="date" class="datepicker">
+</div>
+<div class="input-field">
+<i class="icon ion-ios-clock-outline prefix"></i>
+<input  type="time" class="datepicker">
+</div>
+<div class="input-field">
+<i class="icon ion-ios-clock-outline prefix"></i>
+<input  type="time" class="datepicker">
+</div>
+<div class="input-field">
+<i class="icon ion-ios-eye-outline prefix"></i>
+<textarea ng-model="reserva.observacion" id="textarea2" class="materialize-textarea" placeholder="Observacion"></textarea>
+</div>
+<a class="waves-effect waves-light waves-block btn blue-grey darken-2">RESERVAR</a>
+</div>
+</ion-tab>-->
+</ion-tabs>

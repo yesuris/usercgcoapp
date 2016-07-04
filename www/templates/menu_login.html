@@ -1,0 +1,43 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    
+    <ion-side-menu-content >
+    
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+      
+      </ion-side-menu-content>
+    
+  <ion-side-menu side="left">
+      
+      <ion-header-bar class="blue-grey darken-2">
+            <h1 class="title white-text">Login</h1>
+          </ion-header-bar>
+    
+    <ion-content class="center-align">
+    <div class="container"><br>
+        <img class="responsive-img" src="img/logo_arriba.png">
+ 
+<div class="container">
+<form role="form" name="forMenuLogin" ng-model="formulario" >
+
+            
+            <input ng-model="cliente.correo" placeholder="Email" id="email" type="email" class="validate">
+            <input ng-class="{ 'has-error': forMenuLogin.password.$invalid, 'has-success': forMenuLogin.password.$valid}" ng-model="cliente.contrasena" placeholder="Contraseña" id="password" name="password" type="password" class="validate" ng-minlength="6">
+            <div ng-show="forMenuLogin.password.$dirty">
+                <div ng-show="forMenuLogin.password.$error.minlength" class="alert alert-danger" role="alert">*La contraseña debe terner minimo 6 caracteres.</div>
+            </div>
+        
+        
+        <button ng-disabled="!cliente.correo || !cliente.contrasena" ng-click="login()" class="button button-small waves-effect waves-light waves-block btn blue-grey darken-2 white-text">INICIAR SESION
+        </button>
+</form>
+</div>  
+         
+
+        
+        <a class="tamanoletra" menu-toggle="left" href="#/app/crear_cuenta">Crear Cuenta</a><br>
+        <br>
+        <a class="tamanoletra" menu-toggle="left" href="#/app/recup_contrasena">Olvidaste tu contraseña</a>
+    </div>
+</ion-content>
+  </ion-side-menu>
+</ion-side-menus>
